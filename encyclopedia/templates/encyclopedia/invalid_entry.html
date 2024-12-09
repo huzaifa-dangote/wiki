@@ -1,0 +1,9 @@
+{% extends "encyclopedia/layout.html" %}
+
+    {% block title %}
+        Encyclopedia
+    {% endblock %}
+
+    {% block body %}
+        <p>Entry is invalid, please <a href="{% url 'encyclopedia:display_new_entry_form' %}">try again</a></p>
+    {% endblock %}

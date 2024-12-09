@@ -1,0 +1,8 @@
+.button_container {
+    height: 60px;
+}
+
+.btn {
+    float: left;
+    margin-left: 3px;
+}

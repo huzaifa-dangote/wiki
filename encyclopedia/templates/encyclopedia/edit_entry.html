@@ -1,0 +1,33 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+{{ entry_name }}
+{% endblock %}
+
+{% block head %}
+<link href="{% static 'encyclopedia/edit_styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<p>Editting content of {{ entry_name }}</p>
+
+<div class="form_container">
+    <form action="{% url 'encyclopedia:edit_entry' entry_name %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="myinput" class="form-label">Entry title</label>
+            <input name="entry_title" type="text" class="form-control" id="myinput" value="{{ entry_name }}" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="mytextarea" class="form-label">Content</label>
+            <textarea name="entry_content" class="form-control" id="mytextarea" rows="6">{{ entry }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-dark">Save</button>
+        <a href="{% url 'encyclopedia:index' %}" type="button" class="btn btn-dark">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block head %}
+<link href="{% static 'encyclopedia/create_new_styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<p>Create new entry</p>
+
+<div class="form_container">
+    <form action="{% url 'encyclopedia:create_new_entry' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Entry title</label>
+            <input name="entry_title" type="text" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+            <textarea name="entry_content" style="height: 300px" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-dark">Save</button>
+        <a href="{% url 'encyclopedia:index' %}" type="button" class="btn btn-dark">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}
